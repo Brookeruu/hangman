@@ -4,7 +4,7 @@ require 'hangman'
 
 describe('Hangman') do
   before()do
-    Hangman.clear_player_guess
+    Hangman.clear
   end
 
   describe('#initialize') do
@@ -26,10 +26,34 @@ describe('Hangman') do
       expect(Hangman.player_guess).to(eq([hangman]))
     end
   end
-  describe('#generate_word') do
+  describe('.generate_word') do
     it('will generate random word from array and push to compter word class var') do
     Hangman.generate_word
       expect(Hangman.computer_word).to(eq("cat"))
     end
   end
+  describe('.generate_word') do
+    it('create array of dashes equal to length comp word') do
+    Hangman.generate_word
+    expect(Hangman.display_computer_word).to(eq(["-", "-", "-"]))
+      expect(Hangman.computer_word).to(eq("cat"))
+    end
+  end
+  describe('.check_matching') do
+    it('changes dashes to letters if in comp word') do
+    Hangman.generate_word
+    hangman = Hangman.new('a')
+    hangman.check_matching
+    expect(Hangman.display_computer_word).to(eq(["-", "-", "-"]))
+    end
+  end
+  describe('.check_matching') do
+    it('changes dashes to letters if in comp word') do
+    Hangman.generate_word
+    hangman = Hangman.new('z')
+    hangman.check_matching
+    expect(Hangman.body_parts).to(eq(1))
+    end
+  end
+
 end
